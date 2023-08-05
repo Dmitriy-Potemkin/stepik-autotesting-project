@@ -10,6 +10,12 @@ class ProductPage(BasePage):
         add_to_basket_button = self.browser.find_element(*ProductPageLocators.ADD_TO_BASKET_BUTTON)
         add_to_basket_button.click()
         self.solve_quiz_and_get_code()
+    
+    def get_product_name(self):
+        return self.browser.find_element(*ProductPageLocators.ITEM_NAME).text
+
+    def get_product_value(self):
+        return self.browser.find_element(*ProductPageLocators.ITEM_PRICE).text[1:]
 
     def should_be_correct_bought_item(self, item):
         bought_item = self.browser.find_element(*ProductPageLocators.BOUGHT_ITEM_NAME).text
