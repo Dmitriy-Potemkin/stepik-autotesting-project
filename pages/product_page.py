@@ -24,3 +24,11 @@ class ProductPage(BasePage):
     def should_be_correct_bought_value(self, value):
         bought_value = self.browser.find_element(*ProductPageLocators.BOUGHT_ITEM_PRICE).text[1:]
         assert float(value) == float(bought_value), "Basket price is incorrect"
+    
+    def should_not_be_success_message(self):
+        assert self.is_not_element_present(*ProductPageLocators.SUCCESS_MESSAGE), \
+           "Success message is presented, but should not be"
+    
+    def should_disappear_success_message(self):
+        assert self.is_disappeared(*ProductPageLocators.SUCCESS_MESSAGE), \
+           "Success message is presented, but should have disappeared"
